@@ -1,0 +1,96 @@
+healthcare-backend/
+│
+├── src/
+│   ├── config/
+│   │   ├── database.js          # Database configuration
+│   │   ├── env.js                # Environment variables
+│   │   └── constants.js          # Application constants
+│   │
+│   ├── models/
+│   │   ├── index.js              # Sequelize initialization
+│   │   ├── User.js               # User model (base for all users)
+│   │   ├── Patient.js            # Patient model
+│   │   ├── Doctor.js             # Doctor model
+│   │   ├── Admin.js              # Admin model
+│   │   ├── Appointment.js        # Appointment model
+│   │   ├── MedicalHistory.js     # Medical history model
+│   │   ├── Prescription.js       # Prescription model
+│   │   ├── LabResult.js          # Lab result model
+│   │   ├── MedicalImage.js       # Medical image model
+│   │   ├── Medication.js         # Medication tracking model
+│   │   └── HealthMetric.js       # Health monitoring model
+│   │
+│   ├── controllers/
+│   │   ├── authController.js     # Authentication logic
+│   │   ├── patientController.js  # Patient management
+│   │   ├── doctorController.js   # Doctor management
+│   │   ├── adminController.js    # Admin management
+│   │   ├── appointmentController.js
+│   │   ├── prescriptionController.js
+│   │   ├── labResultController.js
+│   │   ├── medicalImageController.js
+│   │   ├── medicationController.js
+│   │   └── healthMetricController.js
+│   │
+│   ├── routes/
+│   │   ├── index.js              # Main route aggregator
+│   │   ├── authRoutes.js         # Authentication routes
+│   │   ├── patientRoutes.js      # Patient routes
+│   │   ├── doctorRoutes.js       # Doctor routes
+│   │   ├── adminRoutes.js        # Admin routes
+│   │   ├── appointmentRoutes.js  # Appointment routes
+│   │   ├── prescriptionRoutes.js # Prescription routes
+│   │   ├── labResultRoutes.js    # Lab result routes
+│   │   ├── medicalImageRoutes.js # Medical image routes
+│   │   ├── medicationRoutes.js   # Medication routes
+│   │   └── healthMetricRoutes.js # Health metric routes
+│   │
+│   ├── middleware/
+│   │   ├── authMiddleware.js     # JWT verification
+│   │   ├── roleMiddleware.js     # RBAC middleware
+│   │   ├── validateMiddleware.js # Input validation
+│   │   ├── errorHandler.js       # Error handling middleware
+│   │   ├── uploadMiddleware.js   # File upload handling
+│   │   └── rateLimiter.js        # Rate limiting
+│   │
+│   ├── validators/
+│   │   ├── authValidator.js      # Auth validation schemas
+│   │   ├── patientValidator.js   # Patient validation
+│   │   ├── appointmentValidator.js
+│   │   └── prescriptionValidator.js
+│   │
+│   ├── utils/
+│   │   ├── jwtHelper.js          # JWT token utilities
+│   │   ├── passwordHelper.js     # Password hashing
+│   │   ├── emailService.js       # Email sending service
+│   │   ├── logger.js             # Logging utility
+│   │   ├── responseHelper.js     # Standardized responses
+│   │   └── fileUpload.js         # File handling utilities
+│   │
+│   ├── services/
+│   │   ├── authService.js        # Auth business logic
+│   │   ├── patientService.js     # Patient business logic
+│   │   ├── appointmentService.js # Appointment logic
+│   │   └── analyticsService.js   # Analytics logic
+│   │
+│   └── app.js                    # Express app configuration
+│
+├── uploads/                      # Uploaded files directory
+│   ├── medical-images/
+│   ├── lab-results/
+│   └── documents/
+│
+├── tests/                        # Test files
+│   ├── unit/
+│   ├── integration/
+│   └── setup.js
+│
+├── migrations/                   # Database migrations
+├── seeders/                      # Database seeders
+├── logs/                         # Application logs
+├── .env                          # Environment variables
+├── .env.example                  # Environment template
+├── .gitignore                    # Git ignore file
+├── package.json                  # Dependencies
+├── server.js                     # Entry point
+└── README.md                     # Project documentation
