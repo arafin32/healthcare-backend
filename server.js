@@ -1,10 +1,15 @@
 require('dotenv').config();
+
+const express = require('express');
 const app = require('./src/app');
 const sequelize = require('./src/config/database');
 const logger = require('./src/utils/logger');
 const fs = require('fs');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000; // Render uses dynamic port
+
+// ✅ REQUIRED for Render / proxies (fixes rate limiter error)
+app.set('trust proxy', 1);
 
 // Ensure required directories exist
 const ensureDirectories = () => {
@@ -16,7 +21,7 @@ const ensureDirectories = () => {
     'uploads/profiles',
     'logs'
   ];
-  
+
   dirs.forEach(dir => {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -29,21 +34,22 @@ const startServer = async () => {
   try {
     // Ensure directories exist
     ensureDirectories();
-    
+
     // Test database connection
     await sequelize.authenticate();
     logger.info('Database connection established successfully');
 
-    // Sync database (use { force: true } to drop and recreate tables - ONLY in development)
+    // Sync database
     await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
     logger.info('Database synchronized');
 
-    // Start server
-    app.listen(PORT, () => {
+    // Start server (IMPORTANT for Render: bind to 0.0.0.0)
+    app.listen(PORT, '0.0.0.0', () => {
       logger.info(`Server is running on port ${PORT}`);
       logger.info(`Environment: ${process.env.NODE_ENV}`);
       logger.info(`Health check: http://localhost:${PORT}/health`);
     });
+
   } catch (error) {
     logger.error('Unable to start server:', error);
     process.exit(1);
