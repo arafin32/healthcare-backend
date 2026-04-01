@@ -9,14 +9,16 @@ const logger = require('./utils/logger');
 
 const app = express();
 
-// Security middleware
+// ✅ Security middleware
 app.use(helmet());
+
+// ✅ CORS (IMPORTANT for frontend-backend communication)
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: process.env.CORS_ORIGIN, // avoid '*' when using credentials
   credentials: true
 }));
 
-// Rate limiting
+// ✅ Rate limiting (already correct path-based)
 app.use('/api', limiter);
 
 // Body parser middleware
